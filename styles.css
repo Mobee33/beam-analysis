@@ -1,0 +1,367 @@
+/* styles.css */
+
+/* --- Global Resets and Base Styles --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.6;
+    background-color: #f4f7f9; /* Light blue-grey background */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* --- App Container --- */
+.app-container {
+    width: 100%;
+    max-width: 1300px; /* Allow for wider content */
+    background-color: transparent; /* Container is just for layout */
+}
+
+/* --- Header --- */
+.app-header {
+    background-color: #34495e; /* Dark blue-grey */
+    color: #ecf0f1; /* Light grey/white */
+    padding: 20px 30px;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-header h1 {
+    font-size: 1.8em;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* --- Main Content Area --- */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Space between control and output panels */
+    padding: 0; /* Header and footer will have padding */
+}
+
+/* --- Card Style for Panels --- */
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+}
+
+/* --- Controls Panel --- */
+.controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-group label {
+    font-weight: 500;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.controls-panel select,
+.controls-panel input[type="number"],
+.controls-panel input[type="text"] {
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db; /* Light grey border */
+    background-color: #fff;
+    font-size: 1em;
+    width: 100%;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.controls-panel select:focus,
+.controls-panel input[type="number"]:focus,
+.controls-panel input[type="text"]:focus {
+    border-color: #3b82f6; /* Blue focus */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+
+.load-parameters fieldset {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.load-parameters legend {
+    font-weight: 500;
+    color: #34495e;
+    padding: 0 8px;
+    font-size: 1em;
+}
+
+#load-parameters-inputs-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    align-items: end; /* Align items for varying heights */
+}
+
+#load-parameters-inputs-container .parameter-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#load-parameters-inputs-container .parameter-input-group label {
+    font-size: 0.9em;
+    color: #444;
+}
+#load-parameters-inputs-container .parameter-input-group input {
+    max-width: 250px; /* Prevent number inputs from getting too wide */
+}
+
+
+.button-primary {
+    background-color: #3b82f6; /* Blue */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    align-self: flex-start; /* Align button to the start if in a flex container */
+}
+
+.button-primary:hover {
+    background-color: #2563eb; /* Darker blue */
+}
+
+.placeholder-text {
+    color: #777;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+/* --- Output Panel --- */
+.output-panel {
+    opacity: 0; /* Initially hidden, JS will fade it in */
+    transform: translateY(10px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.output-panel.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.beam-title-main {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 10px;
+}
+
+.beam-visualization-container {
+    background-color: #f8fafc; /* Very light grey for SVG background */
+    border: 1px solid #e5e7eb; /* Lighter border */
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 190px; /* Ensure space for SVG */
+    padding: 10px;
+}
+
+#beam-svg {
+    width: 100%;
+    max-width: 700px;
+    height: 180px; /* Consistent height for SVG drawing area */
+    overflow: visible;
+}
+
+.svg-placeholder-text {
+    font-size: 14px;
+    fill: #6b7280; /* Grey text */
+    font-style: italic;
+}
+
+.equations-display {
+    background-color: #f9fafb; /* Lightest grey */
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.equations-display h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #1e3a8a; /* Darker blue for equation title */
+    font-size: 1.1em;
+}
+
+.equations-display ul {
+    list-style-type: none;
+    padding-left: 0;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 0.9em;
+    line-height: 1.7;
+}
+
+.equations-display li {
+    margin-bottom: 10px;
+}
+
+.equations-display code {
+    background-color: #eef2ff; /* Light indigo background for code */
+    padding: 3px 6px;
+    border-radius: 4px;
+    color: #3730a3; /* Indigo text */
+}
+
+.diagrams-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Stack on small screens */
+    gap: 25px;
+}
+
+.chart-wrapper {
+    background-color: #fdfdff; /* Slightly off-white for chart background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.chart-wrapper h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #34495e;
+    font-size: 1.15em;
+    font-weight: 500;
+}
+
+.chart-container {
+    position: relative;
+    height: 350px; /* Increased height for charts */
+}
+
+/* --- Footer --- */
+.app-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    color: #6b7280; /* Muted grey */
+    font-size: 0.85em;
+    background-color: #e9ecef; /* Light grey footer background */
+    width: 100%;
+    max-width: 1300px;
+    border-radius: 0 0 10px 10px;
+}
+
+/* --- Equation Helper Spans --- */
+.eq-var { font-style: italic; }
+.eq-val { font-weight: bold; }
+.eq-sub { vertical-align: sub; font-size: 0.75em; }
+.eq-sup { vertical-align: super; font-size: 0.75em; }
+
+/* --- SVG Element Styles (can be overridden by JS if needed) --- */
+.beam-line { stroke: #34495e; stroke-width: 7; stroke-linecap: round; } /* Thicker beam */
+
+.support-pin path { fill: #34495e; stroke: #2c3e50; stroke-width:1.5; }
+.support-pin line { stroke: #7f8c8d; stroke-width:2; }
+
+.support-roller circle { fill: #fff; stroke: #34495e; stroke-width:2; }
+.support-roller .roller-base { stroke: #7f8c8d; stroke-width:2; }
+.support-roller circle[fill="#aaa"] { /* Small inner circles */
+    stroke: #888;
+    stroke-width: 0.5;
+}
+
+
+.support-fixed rect { fill: #adb5bd; stroke: #6c757d; stroke-width:1.5; } /* Muted fixed support */
+.fixed-hatch line { stroke: #6c757d; stroke-width: 1.5; }
+
+.load-arrow { stroke: #d9534f; stroke-width:2; } /* Bootstrap danger red */
+.load-arrow-head { fill: #d9534f; }
+
+.udl-rect { fill: rgba(217, 83, 79, 0.1); stroke: #d9534f; stroke-width:1; stroke-dasharray: 4 4; }
+.udl-arrow { stroke: #d9534f; stroke-width:1.5; }
+.udl-arrow-head { fill: #d9534f; }
+
+.load-label { font-size: 12px; fill: #2c3e50; text-anchor: middle; font-weight: 500; }
+.dim-line { stroke: #6c757d; stroke-width: 1.2; marker-start: url(#dimArrowStart); marker-end: url(#dimArrowEnd); }
+.dim-text { font-size: 11px; fill: #34495e; text-anchor: middle; dominant-baseline: central;}
+.dim-text-bg { /* For background of dimension text */
+    fill: #f8fafc; /* Match beam visualization background */
+    stroke: none;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (min-width: 768px) {
+    .main-content {
+        /* Could go side-by-side on larger screens if desired, but column is fine for now */
+    }
+    #load-parameters-inputs-container {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* More space for inputs */
+    }
+    .diagrams-grid {
+        grid-template-columns: 1fr 1fr; /* Two charts side-by-side */
+    }
+}
+
+@media (min-width: 1024px) {
+    .app-header h1 {
+        font-size: 2em;
+    }
+    .main-content {
+        flex-direction: row; /* Control and output panels side-by-side */
+        align-items: flex-start; /* Align to top */
+    }
+    .controls-panel {
+        flex: 0 0 320px; /* Fixed width for controls */
+        max-width: 350px;
+        position: sticky; /* Make controls sticky */
+        top: 20px; /* Adjust based on desired sticky position */
+    }
+    .output-panel {
+        flex: 1; /* Output panel takes remaining space */
+    }
+}
+
+/* Animation for newly added elements */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.parameter-input-group {
+    animation: slideInUp 0.3s ease-out forwards;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Beam Analysis Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏗️</text></svg>">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Comprehensive Beam Analysis Tool</h1>
+        </header>
+
+        <main class="main-content">
+            <section class="controls-panel card">
+                <div class="control-group">
+                    <label for="beam-select">Select Beam Condition:</label>
+                    <select id="beam-select" aria-label="Select Beam Condition">
+                        <option value="">-- Loading Conditions --</option>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+
+                <fieldset id="load-parameters-fieldset" class="control-group load-parameters">
+                    <legend>Load Parameters</legend>
+                    <div id="load-parameters-inputs-container">
+                        <!-- Input fields for loads (w, P, a, b, etc.) will be dynamically added here by JavaScript -->
+                        <p class="placeholder-text">Select a beam condition to see its parameters.</p>
+                    </div>
+                </fieldset>
+                 <div class="control-group">
+                    <button id="update-diagrams-button" class="button-primary">Update Diagrams & Visual</button>
+                </div>
+            </section>
+
+            <section id="beam-output-section" class="output-panel card" aria-live="polite">
+                <!-- This section will be initially hidden or show a placeholder, then populated by JS -->
+                <h2 id="beam-title-display" class="beam-title-main">Select a beam condition</h2>
+                
+                <div class="beam-visualization-container">
+                    <svg id="beam-svg" viewBox="0 0 700 180" preserveAspectRatio="xMidYMid meet">
+                        <!-- SVG <defs> for markers will be added by JS -->
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" class="svg-placeholder-text">Beam visualization will appear here.</text>
+                    </svg>
+                </div>
+
+                <div id="equations-container" class="equations-display">
+                    <h3>Relevant Equations:</h3>
+                    <div id="equations-content-area">
+                        <p class="placeholder-text">Equations will be shown here.</p>
+                    </div>
+                </div>
+
+                <div class="diagrams-grid">
+                    <div class="chart-wrapper">
+                        <h3>Shear Force Diagram (V)</h3>
+                        <div class="chart-container">
+                            <canvas id="shear-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <h3>Bending Moment Diagram (M)</h3>
+                        <div class="chart-container">
+                            <canvas id="moment-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2025 Beam Analysis Tool. For educational purposes.</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript Files -->
+    <!-- Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script> 
+    <!-- Data for all 32 beam cases -->
+    <script src="beam_data.js"></script>
+    <!-- SVG drawing utilities and specific beam visualizers -->
+    <script src="beam_visualizer.js"></script>
+    <!-- Core application logic -->
+    <script src="main_app.js"></script>
+</body>
+</html>
